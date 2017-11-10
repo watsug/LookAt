@@ -1,7 +1,8 @@
 ﻿namespace LookAtApi.Interfaces
 {
-    interface IVisibleObject
+    public interface IVisibleObject
     {
-        string Value { get; }
+        IVisibleObject Parent { get; }
+        object Value { get; }
     }
 }

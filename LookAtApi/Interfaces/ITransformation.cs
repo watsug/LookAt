@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LookAtApi.Interfaces
 {
-    interface ITransformation
+    public interface ITransformation
     {
         string Name { get; }
         IVisibleObject DoTransformation(IVisibleObject obj);

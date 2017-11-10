@@ -2,7 +2,7 @@
 
 namespace LookAtApi.Interfaces
 {
-    interface IPlugin
+    public interface IPlugin
     {
         string Category { get; }
         string Name { get; }

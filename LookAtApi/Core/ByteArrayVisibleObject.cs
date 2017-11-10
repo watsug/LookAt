@@ -2,15 +2,15 @@
 
 namespace LookAtApi.Core
 {
-    public class StringVisibleObject : VisibleObjectBase
+    public class ByteArrayVisibleObject : VisibleObjectBase
     {
         #region private
-        string _val = "";
+        byte[] _val = null;
         #endregion
 
-        public StringVisibleObject(string str, IVisibleObject parent = null) : base (parent)
+        public ByteArrayVisibleObject(byte[] arr, IVisibleObject parent = null) : base (parent)
         {
-            _val = str;
+            _val = arr;
         }
 
         #region IVisibleObject

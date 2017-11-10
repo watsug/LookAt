@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageProjectUrl>https://github.com/watsug/LookAt</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/watsug/LookAt/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Adam Augustyn</Copyright>
+    <RepositoryUrl>https://github.com/watsug/LookAt</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>

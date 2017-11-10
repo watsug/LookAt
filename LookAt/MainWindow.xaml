@@ -1,0 +1,42 @@
+﻿<Window x:Class="LookAt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"        
+        xmlns:local="clr-namespace:LookAt"
+        mc:Ignorable="d"
+        Title="LookAt!" Height="480" Width="640">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Load" />
+                <MenuItem Header="_Save" />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" />
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="Try me..."/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <xctk:PropertyGrid x:Name="propertyGrid" Grid.Row="1" Grid.Column="1">
+            </xctk:PropertyGrid>
+        </Grid>
+    </Grid>
+</Window>

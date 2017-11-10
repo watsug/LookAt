@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LookAtApi", "LookAtApi\LookAtApi.csproj", "{1E8C2CB5-ACE5-49D1-A5B9-8C3C9D56D4EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookAt", "LookAt\LookAt.csproj", "{17E53274-B0C3-4FDE-994A-B29B7324BB76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{B8B14D49-2D68-438F-AFB1-FB1C8B567288}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E8C2CB5-ACE5-49D1-A5B9-8C3C9D56D4EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E8C2CB5-ACE5-49D1-A5B9-8C3C9D56D4EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E8C2CB5-ACE5-49D1-A5B9-8C3C9D56D4EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E8C2CB5-ACE5-49D1-A5B9-8C3C9D56D4EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17E53274-B0C3-4FDE-994A-B29B7324BB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17E53274-B0C3-4FDE-994A-B29B7324BB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17E53274-B0C3-4FDE-994A-B29B7324BB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17E53274-B0C3-4FDE-994A-B29B7324BB76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D8BE59D-EA4E-41AD-9F10-35082531F06B}
+	EndGlobalSection
+EndGlobal

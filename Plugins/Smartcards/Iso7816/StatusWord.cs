@@ -1,10 +1,12 @@
-﻿using System.Globalization;
+﻿using System.Composition;
+using System.Globalization;
 using System.Collections.Generic;
 using LookAtApi.Core;
 using LookAtApi.Interfaces;
 
 namespace Smartcards.Iso7816
 {
+    [Export(typeof(ITransformation))]
     public class StatusWord : ITransformation
     {
         #region private

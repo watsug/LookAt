@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Composition;
 using LookAtApi.Core;
 using LookAtApi.Interfaces;
 
 namespace CoreTransformations.BaseX
 {
+    [Export(typeof(ITransformation))]
     public class FromBase64 : ITransformation
     {
         #region ITransformation

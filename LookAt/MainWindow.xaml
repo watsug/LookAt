@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0">
+            <RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" SelectionChanged="RichTextBox_SelectionChanged">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text="Try me..."/>

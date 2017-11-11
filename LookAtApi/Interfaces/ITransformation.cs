@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LookAtApi.Interfaces
+﻿namespace LookAtApi.Interfaces
 {
     public interface ITransformation
     {

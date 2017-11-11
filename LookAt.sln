@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartcards", "Plugins\Smart
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTransformations", "Plugins\CoreTransformations\CoreTransformations.csproj", "{6F4A4233-BBB8-4302-9A5A-ACEB9B673D9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookAtCore", "LookAtCore\LookAtCore.csproj", "{70F4D823-3B1B-49E7-863C-30BFDB8D5404}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{6F4A4233-BBB8-4302-9A5A-ACEB9B673D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F4A4233-BBB8-4302-9A5A-ACEB9B673D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F4A4233-BBB8-4302-9A5A-ACEB9B673D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F4D823-3B1B-49E7-863C-30BFDB8D5404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F4D823-3B1B-49E7-863C-30BFDB8D5404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F4D823-3B1B-49E7-863C-30BFDB8D5404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F4D823-3B1B-49E7-863C-30BFDB8D5404}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

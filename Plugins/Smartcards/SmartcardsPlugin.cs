@@ -1,18 +1,25 @@
-﻿using System;
+﻿using System.Reflection;
+using System.Composition;
+using System.Composition.Hosting;
 using System.Collections.Generic;
 using LookAtApi.Interfaces;
-using Smartcards.Iso7816;
 
 namespace Smartcards
 {
+    [Export(typeof(IPlugin))]
     public class SmartcardsPlugin : IPlugin
     {
         #region private
         private static List<ITransformation> _transformations;
         SmartcardsPlugin()
         {
-            _transformations = new List<ITransformation>();
-            _transformations.Add(new StatusWord());
+            var configuration = new ContainerConfiguration()
+                .WithAssembly(typeof(SmartcardsPlugin).GetTypeInfo().Assembly);
+            using (var container = configuration.CreateContainer())
+            {
+                var transformations = container.GetExports<ITransformation>();
+                _transformations = new List<ITransformation>(transformations);
+            }
         }
         #endregion
 

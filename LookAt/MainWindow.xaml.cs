@@ -24,5 +24,14 @@ namespace LookAt
         {
             InitializeComponent();
         }
+
+        private void RichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            RichTextBox textBox = sender as RichTextBox;
+            Catalog catalog = new Catalog();
+            catalog.Add(new Item(textBox.Selection.Text));
+            catalog.Add(new Item(textBox.Selection.Text));
+            propertyGrid.SelectedObject = catalog;
+        }
     }
 }

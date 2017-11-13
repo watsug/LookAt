@@ -11,7 +11,7 @@ namespace CoreTransformations
     {
         #region private
         private static List<ITransformation> _transformations;
-        CorePlugin()
+        static CorePlugin()
         {
             var configuration = new ContainerConfiguration()
                 .WithAssembly(typeof(CorePlugin).GetTypeInfo().Assembly);

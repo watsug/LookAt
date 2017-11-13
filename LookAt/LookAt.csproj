@@ -120,6 +120,10 @@
       <Project>{1e8c2cb5-ace5-49d1-a5b9-8c3c9d56d4eb}</Project>
       <Name>LookAtApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LookAtCore\LookAtCore.csproj">
+      <Project>{70f4d823-3b1b-49e7-863c-30bfdb8d5404}</Project>
+      <Name>LookAtCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

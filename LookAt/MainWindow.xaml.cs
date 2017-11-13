@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LookAtApi.Interfaces;
+using LookAtCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,9 @@ namespace LookAt
         public MainWindow()
         {
             InitializeComponent();
+
+            IEnumerable<IPlugin> plugins =
+                PluginLoader.LoadPlugins(@"c:\projects\LookAt\Plugins\Smartcards\bin\Debug\netstandard2.0\", "*.dll");
         }
 
         private void RichTextBox_SelectionChanged(object sender, RoutedEventArgs e)

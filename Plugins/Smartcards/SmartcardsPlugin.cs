@@ -11,7 +11,7 @@ namespace Smartcards
     {
         #region private
         private static List<ITransformation> _transformations;
-        SmartcardsPlugin()
+        static SmartcardsPlugin()
         {
             var configuration = new ContainerConfiguration()
                 .WithAssembly(typeof(SmartcardsPlugin).GetTypeInfo().Assembly);
@@ -20,6 +20,12 @@ namespace Smartcards
                 var transformations = container.GetExports<ITransformation>();
                 _transformations = new List<ITransformation>(transformations);
             }
+        }
+        #endregion
+
+        #region ctor
+        public SmartcardsPlugin()
+        {
         }
         #endregion
 

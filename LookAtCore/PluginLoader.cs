@@ -9,6 +9,17 @@ namespace LookAtCore
 {
     public class PluginLoader
     {
+        public const string PluginsFolder = "Plugins";
+
+        public static IEnumerable<IPlugin> LoadPlugins()
+        {
+            var location = Assembly.GetExecutingAssembly().Location;
+            var path = Path.Combine(Path.GetDirectoryName(location), PluginsFolder);
+            IEnumerable<IPlugin> plugins =
+                PluginLoader.LoadPlugins(path, "*.dll");
+            return plugins;
+        }
+
         public static IEnumerable<IPlugin> LoadPlugins(string path, string fileMask)
         {
             List<IPlugin> ret = new List<IPlugin>();

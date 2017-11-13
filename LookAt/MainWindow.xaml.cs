@@ -1,19 +1,11 @@
-﻿using LookAtApi.Interfaces;
-using LookAtCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using LookAtCore;
+using System.Collections;
+using LookAtApi.Interfaces;
+using System.Collections.Generic;
+using LookAtApi.Core;
 
 namespace LookAt
 {
@@ -22,21 +14,49 @@ namespace LookAt
     /// </summary>
     public partial class MainWindow : Window
     {
+        private IEnumerable<IPlugin> _plugins;
+
         public MainWindow()
         {
             InitializeComponent();
-
-            IEnumerable<IPlugin> plugins =
-                PluginLoader.LoadPlugins(@"c:\projects\LookAt\Plugins\Smartcards\bin\Debug\netstandard2.0\", "*.dll");
         }
 
         private void RichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             RichTextBox textBox = sender as RichTextBox;
-            Catalog catalog = new Catalog();
-            catalog.Add(new Item(textBox.Selection.Text));
-            catalog.Add(new Item(textBox.Selection.Text));
-            propertyGrid.SelectedObject = catalog;
+            IVisibleObject baseObject = new StringVisibleObject(textBox.Selection.Text);
+            List<IVisibleObject> results = new List<IVisibleObject>();
+            foreach (var plugin in _plugins)
+            {
+                foreach (var t in plugin.Transformations)
+                {
+                    try
+                    {
+                        IVisibleObject tmp = t.DoTransformation(baseObject);
+                        if (tmp != null)
+                        {
+                            results.Add(tmp);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // TODO: add warning here
+                    }
+                }
+            }
+            propertyGrid.SelectedObject = results;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _plugins = PluginLoader.LoadPlugins();
+            }
+            catch (Exception)
+            {
+                // TODO: add warning here
+            }
         }
     }
 }

@@ -23,6 +23,12 @@ namespace CoreTransformations
         }
         #endregion
 
+        #region ctor
+        public CorePlugin()
+        {
+        }
+        #endregion
+
         #region IPlugin
         public string Category => "Core";
 

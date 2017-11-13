@@ -7,7 +7,7 @@
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"        
         xmlns:local="clr-namespace:LookAt"
         mc:Ignorable="d"
-        Title="LookAt!" Height="480" Width="640">
+        Title="LookAt!" Height="480" Width="640" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>

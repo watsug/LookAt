@@ -59,6 +59,8 @@ namespace Smartcards.Iso7816
             _map[0x6A88] = "Referenced data or reference data not found (exact meaning depending on the command)";
             _map[0x6A89] = "File already exists";
             _map[0x6A8A] = "DF name already exists";
+
+            _map[0x9000] = "OK";
         }
         #endregion
 

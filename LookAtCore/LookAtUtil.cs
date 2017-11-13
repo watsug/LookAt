@@ -7,7 +7,7 @@ using LookAtApi.Interfaces;
 
 namespace LookAtCore
 {
-    public class PluginLoader
+    public class LookAtUtil
     {
         public const string PluginsFolder = "Plugins";
 
@@ -16,7 +16,7 @@ namespace LookAtCore
             var location = Assembly.GetExecutingAssembly().Location;
             var path = Path.Combine(Path.GetDirectoryName(location), PluginsFolder);
             IEnumerable<IPlugin> plugins =
-                PluginLoader.LoadPlugins(path, "*.dll");
+                LookAtUtil.LoadPlugins(path, "*.dll");
             return plugins;
         }
 
@@ -42,6 +42,40 @@ namespace LookAtCore
                 }
             }
             return ret;
+        }
+
+        public static IEnumerable<IVisibleObject> DoSearch(IEnumerable<IPlugin> plugins, IVisibleObject obj, int generations = 1)
+        {
+            List<IVisibleObject> results = new List<IVisibleObject>();
+            foreach (var plugin in plugins)
+            {
+                foreach (var t in plugin.Transformations)
+                {
+                    try
+                    {
+                        IVisibleObject tmp = t.DoTransformation(obj);
+                        if (tmp != null)
+                        {
+                            results.Add(tmp);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // TODO: add warning here
+                    }
+                }
+            }
+            if (generations - 1 > 0)
+            {
+                List<IVisibleObject> gen_1 = new List<IVisibleObject>();
+                foreach (var res in results)
+                {
+                    IEnumerable<IVisibleObject> tmp = DoSearch(plugins, res, generations - 1);
+                    gen_1.AddRange(tmp);
+                }
+                results.AddRange(gen_1);
+            }
+            return results;
         }
     }
 }

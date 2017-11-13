@@ -8,7 +8,8 @@ namespace LookAtApi.Core
         string _val = "";
         #endregion
 
-        public StringVisibleObject(string str, IVisibleObject parent = null) : base (parent)
+        public StringVisibleObject(string str, IVisibleObject parent = null, ITransformation transformation = null)
+            : base (parent, transformation)
         {
             _val = str;
         }

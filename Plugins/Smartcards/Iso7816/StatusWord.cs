@@ -69,14 +69,9 @@ namespace Smartcards.Iso7816
 
         public IVisibleObject DoTransformation(IVisibleObject obj)
         {
-            string tmp = obj.Value.ToString();
-            ushort val;
-            if (ushort.TryParse(tmp, NumberStyles.HexNumber, null, out val))
+            if (obj.Value is ushort)
             {
-                if (_map.ContainsKey(val))
-                {
-                    return new StringVisibleObject(_map[val], obj);
-                }
+                return new StringVisibleObject(_map[(ushort)obj.Value], obj, this);
             }
             return null;
         }

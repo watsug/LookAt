@@ -8,7 +8,8 @@ namespace LookAtApi.Core
         byte[] _val = null;
         #endregion
 
-        public ByteArrayVisibleObject(byte[] arr, IVisibleObject parent = null) : base (parent)
+        public ByteArrayVisibleObject(byte[] arr, IVisibleObject parent = null, ITransformation transformation = null)
+            : base (parent, transformation)
         {
             _val = arr;
         }

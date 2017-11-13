@@ -25,25 +25,8 @@ namespace LookAt
         {
             RichTextBox textBox = sender as RichTextBox;
             IVisibleObject baseObject = new StringVisibleObject(textBox.Selection.Text);
-            List<IVisibleObject> results = new List<IVisibleObject>();
-            foreach (var plugin in _plugins)
-            {
-                foreach (var t in plugin.Transformations)
-                {
-                    try
-                    {
-                        IVisibleObject tmp = t.DoTransformation(baseObject);
-                        if (tmp != null)
-                        {
-                            results.Add(tmp);
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        // TODO: add warning here
-                    }
-                }
-            }
+
+            IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, baseObject, 5);
             propertyGrid.SelectedObject = results;
         }
 
@@ -51,7 +34,7 @@ namespace LookAt
         {
             try
             {
-                _plugins = PluginLoader.LoadPlugins();
+                _plugins = LookAtUtil.LoadPlugins();
             }
             catch (Exception)
             {

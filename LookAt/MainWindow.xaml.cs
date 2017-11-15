@@ -27,7 +27,11 @@ namespace LookAt
             IVisibleObject baseObject = new StringVisibleObject(textBox.Selection.Text);
 
             IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, baseObject, 5);
-            propertyGrid.SelectedObject = results;
+
+            VisibleObjectCollection coll = new VisibleObjectCollection();
+            coll.AddRange(results);
+
+            propertyGrid.SelectedObject = coll;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

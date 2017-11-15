@@ -88,8 +88,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Catalog.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="VisibleObjectCollection.cs" />
+    <Compile Include="VisibleObjectCollectionDescriptor.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

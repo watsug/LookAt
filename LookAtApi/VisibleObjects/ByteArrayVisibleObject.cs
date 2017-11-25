@@ -1,7 +1,10 @@
-﻿using LookAtApi.Interfaces;
+﻿using LookAtApi.Converters;
+using LookAtApi.Interfaces;
+using System.ComponentModel;
 
-namespace LookAtApi.Core
+namespace LookAtApi.VisibleObjects
 {
+    [TypeConverter(typeof(VisibleObjectConverter))]
     public class ByteArrayVisibleObject : VisibleObjectBase
     {
         #region private

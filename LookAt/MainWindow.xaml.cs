@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using LookAtCore;
-using System.Collections;
-using LookAtApi.Interfaces;
 using System.Collections.Generic;
-using LookAtApi.Core;
+using LookAt.PropertyGrid;
+using LookAtCore;
+using LookAtApi.Interfaces;
+using LookAtApi.VisibleObjects;
 
 namespace LookAt
 {
@@ -25,13 +25,10 @@ namespace LookAt
         {
             RichTextBox textBox = sender as RichTextBox;
             IVisibleObject baseObject = new StringVisibleObject(textBox.Selection.Text);
-
             IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, baseObject, 5);
 
-            VisibleObjectCollection coll = new VisibleObjectCollection();
-            coll.AddRange(results);
-
-            propertyGrid.SelectedObject = coll;
+            _propertyGrid.SelectedObject = new LookupResult(textBox.Selection.Text, results);
+            _propertyGrid.ExpandAllProperties();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -1,10 +1,10 @@
-﻿using LookAtApi.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel;
+using LookAtApi.Converters;
+using LookAtApi.Interfaces;
 
-namespace LookAtApi.Core
+namespace LookAtApi.VisibleObjects
 {
+    [TypeConverter(typeof(VisibleObjectConverter))]
     public abstract class VisibleObjectBase : IVisibleObject
     {
         #region private
@@ -19,8 +19,13 @@ namespace LookAtApi.Core
         }
 
         #region IVisibleObject
+        [Category("Information")]
         public IVisibleObject Parent => _parent;
+
+        [Category("Information")]
         public ITransformation Transformation => _transformation;
+
+        [Category("Value")]
         public abstract object Value { get; }
         #endregion
     }

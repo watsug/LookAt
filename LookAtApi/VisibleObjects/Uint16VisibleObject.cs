@@ -1,8 +1,11 @@
 ﻿using System;
 using LookAtApi.Interfaces;
+using System.ComponentModel;
+using LookAtApi.Converters;
 
-namespace LookAtApi.Core
+namespace LookAtApi.VisibleObjects
 {
+    [TypeConverter(typeof(VisibleObjectConverter))]
     public class Uint16VisibleObject : VisibleObjectBase
     {
         #region private

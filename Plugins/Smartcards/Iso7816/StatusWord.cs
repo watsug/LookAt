@@ -1,8 +1,7 @@
 ﻿using System.Composition;
-using System.Globalization;
 using System.Collections.Generic;
-using LookAtApi.Core;
 using LookAtApi.Interfaces;
+using LookAtApi.VisibleObjects;
 
 namespace Smartcards.Iso7816
 {

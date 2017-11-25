@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Composition;
-using LookAtApi.Core;
 using LookAtApi.Interfaces;
+using LookAtApi.VisibleObjects;
 
 namespace CoreTransformations.Convert
 {

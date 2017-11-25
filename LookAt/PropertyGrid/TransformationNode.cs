@@ -1,12 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using LookAtApi.Interfaces;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
-namespace LookAt
+namespace LookAt.PropertyGrid
 {
-    public class VisibleObjectCollection : List<IVisibleObject>, ICustomTypeDescriptor
+    [ExpandableObject]
+    public class TransformationNode : ICustomTypeDescriptor
     {
+        private IVisibleObject _vo;
+        private TransformationNodeCollection _children;
+
+        public TransformationNode(IVisibleObject vo)
+        {
+            _vo = vo;
+        }
+        [ExpandableObject]
+        public object Value => _vo.Value;
+
+        [ExpandableObject]
+        public TransformationNodeCollection Children => _children;
+
+
+        public override string ToString()
+        {
+            return _vo.Transformation.Name;
+        }
+
         #region ICustomTypeDescriptor
         public AttributeCollection GetAttributes()
         {
@@ -55,22 +75,12 @@ namespace LookAt
 
         public PropertyDescriptorCollection GetProperties()
         {
-            // Create a new collection object PropertyDescriptorCollection
-            PropertyDescriptorCollection pds = new PropertyDescriptorCollection(null);
-
-            // Iterate the list
-            for (int i = 0; i < this.Count; i++)
-            {
-                VisibleObjectCollectionDescriptor pd = new
-                              VisibleObjectCollectionDescriptor(this, i);
-                pds.Add(pd);
-            }
-            return pds;
+            return TypeDescriptor.GetProperties(this, true);
         }
 
         public PropertyDescriptorCollection GetProperties(Attribute[] attributes)
         {
-            return GetProperties();
+            return TypeDescriptor.GetProperties(this, attributes, true);
         }
 
         public object GetPropertyOwner(PropertyDescriptor pd)

@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookAt", "LookAt\LookAt.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{B8B14D49-2D68-438F-AFB1-FB1C8B567288}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Smartcards", "Plugins\Smartcards\Smartcards.csproj", "{01F06B43-3C27-4476-88F9-2BFC8B5890B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Smartcards", "Plugins\Smartcards\Smartcards.csproj", "{01F06B43-3C27-4476-88F9-2BFC8B5890B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTransformations", "Plugins\CoreTransformations\CoreTransformations.csproj", "{6F4A4233-BBB8-4302-9A5A-ACEB9B673D9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTransformations", "Plugins\CoreTransformations\CoreTransformations.csproj", "{6F4A4233-BBB8-4302-9A5A-ACEB9B673D9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookAtCore", "LookAtCore\LookAtCore.csproj", "{70F4D823-3B1B-49E7-863C-30BFDB8D5404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LookAtCore", "LookAtCore\LookAtCore.csproj", "{70F4D823-3B1B-49E7-863C-30BFDB8D5404}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

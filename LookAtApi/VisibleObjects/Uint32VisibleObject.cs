@@ -19,6 +19,7 @@ namespace LookAtApi.VisibleObjects
         }
 
         #region IVisibleObject
+        [DisplayName("Unsigned integer")]
         public override object Value => _val;
         #endregion
     }

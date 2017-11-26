@@ -24,10 +24,10 @@ namespace LookAt
         private void RichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             RichTextBox textBox = sender as RichTextBox;
-            IVisibleObject baseObject = new StringVisibleObject(textBox.Selection.Text);
-            IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, baseObject, 5);
+            IVisibleObject root = new StringVisibleObject(textBox.Selection.Text);
+            IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, root, 4);
 
-            _propertyGrid.SelectedObject = new LookupResult(textBox.Selection.Text, results);
+            _propertyGrid.SelectedObject = new LookupResult(textBox.Selection.Text, results, root);
             _propertyGrid.ExpandAllProperties();
         }
 

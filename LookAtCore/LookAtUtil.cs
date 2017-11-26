@@ -53,6 +53,12 @@ namespace LookAtCore
                 {
                     try
                     {
+                        if (obj.Transformation != null && t.GetType() == obj.Transformation.GetType())
+                        {
+                            // skip cycles
+                            continue;
+                        }
+
                         IVisibleObject tmp = t.DoTransformation(obj);
                         if (tmp != null)
                         {

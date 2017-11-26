@@ -18,6 +18,7 @@ namespace LookAtApi.VisibleObjects
         }
 
         #region IVisibleObject
+        [DisplayName("Text")]
         public override object Value => _val;
         #endregion
     }

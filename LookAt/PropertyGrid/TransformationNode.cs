@@ -8,18 +8,33 @@ namespace LookAt.PropertyGrid
     [ExpandableObject]
     public class TransformationNode : ICustomTypeDescriptor
     {
-        private IVisibleObject _vo;
-        private TransformationNodeCollection _children;
+        private readonly IVisibleObject _vo;
 
         public TransformationNode(IVisibleObject vo)
         {
             _vo = vo;
+            Children = new TransformationNodeCollection();
         }
         [ExpandableObject]
         public object Value => _vo.Value;
 
         [ExpandableObject]
-        public TransformationNodeCollection Children => _children;
+        public TransformationNodeCollection Children { get; }
+
+        public void AddChild(TransformationNode node)
+        {
+            Children.Add(node);
+        }
+
+        public bool IsParent(IVisibleObject obj)
+        {
+            return _vo.Parent == obj;
+        }
+
+        public bool IsChild(IVisibleObject obj)
+        {
+            return _vo == obj.Parent;
+        }
 
 
         public override string ToString()

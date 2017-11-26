@@ -9,7 +9,7 @@ namespace CoreTransformations.Convert
     [Export(typeof(ITransformation))]
     public class Uint16 : ITransformation
     {
-        public string Name => "Uint16";
+        public string Name => "UInt16";
 
         public IVisibleObject DoTransformation(IVisibleObject obj)
         {

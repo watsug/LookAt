@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:LookAt"
         mc:Ignorable="d"
-        Title="LookAt!" Height="600" Width="800" Loaded="Window_Loaded">
+        Title="LookAt!" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -61,7 +61,7 @@
                         Padding="8,0" 
                     />
                 </StackPanel>
-                <TreeView x:Name="_treeView" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FirstGeneration}">
+                <TreeView x:Name="_treeView" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding FirstGeneration}">
                     <TreeView.ItemContainerStyle>
                         <!-- This Style binds a TreeViewItem to a TransformationViewModel. -->
                         <Style TargetType="{x:Type TreeViewItem}">
@@ -86,6 +86,7 @@
                                    SelectedObject="{Binding ElementName=_treeView, Path=SelectedItem}" SelectedObjectChanged="_propertyGrid_OnSelectedObjectChanged">
                     <xctk:PropertyGrid.PropertyDefinitions>
                         <xctk:PropertyDefinition Name="Name" />
+                        <xctk:PropertyDefinition Name="Path" />
                         <xctk:PropertyDefinition Name="Value" />
                     </xctk:PropertyGrid.PropertyDefinitions>
                 </xctk:PropertyGrid>

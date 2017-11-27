@@ -19,8 +19,9 @@ namespace LookAt.Model
             BuildTree(results, root);
         }
 
-        public string Name => _vo.Transformation == null ? "Root" : _vo.Transformation.Name;
-        public object Value => _vo.Value;
+        public string Name => _vo?.Transformation == null ? "Root" : _vo.Transformation.Name;
+        public string Path => GetPath(_vo);
+        public object Value => _vo?.Value;
         public TransformationCollection Children { get; }
 
         #region public API
@@ -63,6 +64,18 @@ namespace LookAt.Model
 
                 BuildSubTree(results, child);
             }
+        }
+
+        private string GetPath(IVisibleObject vo)
+        {
+            if (vo == null) return null;
+            string prev = "";
+            if (vo.Parent != null)
+            {
+                string parent = GetPath(vo.Parent);
+                prev = string.IsNullOrEmpty(parent) ? "" : parent + " / ";
+            }
+            return prev + (vo.Transformation != null ? vo.Transformation.Name : "");
         }
         #endregion
     }

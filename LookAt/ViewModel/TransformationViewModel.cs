@@ -42,6 +42,7 @@ namespace LookAt.ViewModel
 
         public ReadOnlyCollection<TransformationViewModel> Children => _children;
         public string Name => _transformation.Name;
+        public string Path => _transformation.Path;
 
         [ExpandableObject]
         public object Value => _transformation.Value;

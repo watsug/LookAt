@@ -90,7 +90,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Transformation.cs" />
     <Compile Include="Model\TransformationCollection.cs" />
-    <Compile Include="ViewModel\LookupResultViewModel.cs" />
+    <Compile Include="ViewModel\LookUpViewModel.cs" />
     <Compile Include="ViewModel\TransformationViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

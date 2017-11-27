@@ -17,46 +17,24 @@ namespace LookAt
     /// </summary>
     public partial class MainWindow : Window
     {
-        private IEnumerable<IPlugin> _plugins;
-        private LookupResultViewModel _lookUpTree;
-
+        private readonly LookUpViewModel _lookUpViewModel;
         public MainWindow()
         {
             InitializeComponent();
+            _lookUpViewModel = new LookUpViewModel(new Transformation(null));
+            base.DataContext = _lookUpViewModel;
         }
 
         private void RichTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             RichTextBox textBox = sender as RichTextBox;
-            IVisibleObject root = new StringVisibleObject(textBox.Selection.Text);
-            IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, root, 5);
-            if (_lookUpTree == null)
-            {
-                _lookUpTree = new LookupResultViewModel(new Transformation(results, root));
-                base.DataContext = _lookUpTree;
-            }
-            else
-            {
-                _lookUpTree.Rebuild(new Transformation(results, root));
-            }
-            _lookUpTree?.SearchCommand.Execute(null);
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                _plugins = LookAtUtil.LoadPlugins();
-            }
-            catch (Exception)
-            {
-                // TODO: add warning here
-            }
+            _lookUpViewModel.SelectedText = textBox?.Selection.Text;
+            _lookUpViewModel?.SearchCommand.Execute(null);
         }
 
         private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
         {
-            _lookUpTree?.SearchCommand.Execute(null);
+            _lookUpViewModel?.SearchCommand.Execute(null);
         }
 
         private void _propertyGrid_OnSelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

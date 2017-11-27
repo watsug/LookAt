@@ -18,7 +18,7 @@ namespace CoreTransformations.Convert
         {
             try
             {
-                if (obj.Value is string tmp)
+                if (obj.Value is string tmp && tmp.Length > 0)
                 {
                     tmp = tmp.ToLower();
                     if (tmp.Length % 2 != 0) return null;

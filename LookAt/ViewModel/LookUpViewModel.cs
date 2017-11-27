@@ -4,24 +4,37 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using LookAt.Model;
+using LookAtApi.Interfaces;
+using LookAtApi.VisibleObjects;
+using LookAtCore;
 
 namespace LookAt.ViewModel
 {
-    public class LookupResultViewModel : INotifyPropertyChanged
+    public class LookUpViewModel : INotifyPropertyChanged
     {
         #region Data
         private ReadOnlyCollection<TransformationViewModel> _firstGeneration;
         private TransformationViewModel _root;
+        private string _selected;
         readonly ICommand _searchCommand;
+        private IEnumerable<IPlugin> _plugins;
 
         IEnumerator<TransformationViewModel> _matchingTransformationEnumerator;
         string _searchText = String.Empty;
         #endregion // Data
 
         #region Constructor
-        public LookupResultViewModel(Transformation rootPerson)
+        public LookUpViewModel(Transformation rootTransformation)
         {
-            _root = new TransformationViewModel(rootPerson);
+            try
+            {
+                _plugins = LookAtUtil.LoadPlugins();
+            }
+            catch (Exception)
+            {
+                // TODO: add warning here
+            }
+            _root = new TransformationViewModel(rootTransformation);
             _firstGeneration = new ReadOnlyCollection<TransformationViewModel>(
                 new TransformationViewModel[]
                 {
@@ -35,13 +48,6 @@ namespace LookAt.ViewModel
         #region Rebuild ViewModel
         public void Rebuild(Transformation rootPerson)
         {
-            _root = new TransformationViewModel(rootPerson);
-            _firstGeneration = new ReadOnlyCollection<TransformationViewModel>(
-                new TransformationViewModel[]
-                {
-                    _root
-                });
-            this.OnPropertyChanged("FirstGeneration");
         }
         #endregion
 
@@ -55,6 +61,34 @@ namespace LookAt.ViewModel
         public ReadOnlyCollection<TransformationViewModel> FirstGeneration => _firstGeneration;
         #endregion // FirstGeneration
 
+        #region SelectedText
+
+        /// <summary>
+        /// Returns a read-only collection containing the first transformation 
+        /// in the tree, to which the TreeView can bind.
+        /// </summary>
+        public string SelectedText
+        {
+            get => _selected;
+            set
+            {
+                _selected = value;
+                if (!string.IsNullOrEmpty(_selected))
+                {
+                    IVisibleObject root = new StringVisibleObject(_selected);
+                    IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, root, 5);
+                    _root = new TransformationViewModel(new Transformation(results, root));
+                    _firstGeneration = new ReadOnlyCollection<TransformationViewModel>(
+                        new TransformationViewModel[]
+                        {
+                            _root
+                        });
+                    this.OnPropertyChanged("FirstGeneration");
+                }
+            }
+        }
+        #endregion // FirstGeneration
+
         #region SearchCommand
         /// <summary>
         /// Returns the command used to execute a search in the family tree.
@@ -63,9 +97,9 @@ namespace LookAt.ViewModel
 
         private class SearchTransformationTreeCommand : ICommand
         {
-            readonly LookupResultViewModel _lookupTree;
+            readonly LookUpViewModel _lookupTree;
 
-            public SearchTransformationTreeCommand(LookupResultViewModel lookupTree)
+            public SearchTransformationTreeCommand(LookUpViewModel lookupTree)
             {
                 _lookupTree = lookupTree;
             }

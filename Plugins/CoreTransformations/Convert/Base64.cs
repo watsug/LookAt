@@ -15,13 +15,14 @@ namespace CoreTransformations.Convert
         {
             try
             {
-                if (obj.Value is string)
+                string tmpStr = obj.Value as string;
+                if (!string.IsNullOrEmpty(tmpStr))
                 {
-                    return new ByteArrayVisibleObject(System.Convert.FromBase64String(obj.Value.ToString()), obj, this);
+                    return new ByteArrayVisibleObject(System.Convert.FromBase64String(tmpStr), obj, this);
                 }
-                if (obj.Value is byte[])
+                if (obj.Value is byte[] tmpBt && tmpBt.Length > 0)
                 {
-                    return new StringVisibleObject(System.Convert.ToBase64String(obj.Value as byte[]), obj, this);
+                    return new StringVisibleObject(System.Convert.ToBase64String(tmpBt), obj, this);
                 }
             }
             catch (Exception)

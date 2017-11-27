@@ -32,7 +32,11 @@ namespace CoreTransformations.Filters
                     if (counter > 0)
                     {
                         // only if some some characters were filtered out
-                        return new StringVisibleObject(sb.ToString(), obj, this);
+                        string result = sb.ToString();
+                        if (!string.IsNullOrEmpty(result))
+                        {
+                            return new StringVisibleObject(sb.ToString(), obj, this);
+                        }
                     }
                 }
             }

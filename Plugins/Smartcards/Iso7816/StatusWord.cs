@@ -9,7 +9,7 @@
             Description = desc;
         }
 
-        public string Value { get => _val.ToString("X4"); }
+        public string Value { get => _val.ToString("X4") + "h"; }
         public string Description { get; private set; }
     }
 }

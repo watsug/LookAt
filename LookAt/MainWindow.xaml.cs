@@ -2,10 +2,13 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.Generic;
-using LookAt.PropertyGrid;
+using System.Linq;
+using System.Windows.Input;
+using LookAt.Model;
 using LookAtCore;
 using LookAtApi.Interfaces;
 using LookAtApi.VisibleObjects;
+using LookAt.ViewModel;
 
 namespace LookAt
 {
@@ -15,6 +18,7 @@ namespace LookAt
     public partial class MainWindow : Window
     {
         private IEnumerable<IPlugin> _plugins;
+        private LookupResultViewModel _lookUpTree;
 
         public MainWindow()
         {
@@ -25,10 +29,17 @@ namespace LookAt
         {
             RichTextBox textBox = sender as RichTextBox;
             IVisibleObject root = new StringVisibleObject(textBox.Selection.Text);
-            IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, root, 4);
-
-            _propertyGrid.SelectedObject = new LookupResult(textBox.Selection.Text, results, root);
-            _propertyGrid.ExpandAllProperties();
+            IEnumerable<IVisibleObject> results = LookAtUtil.DoSearch(_plugins, root, 5);
+            if (_lookUpTree == null)
+            {
+                _lookUpTree = new LookupResultViewModel(new Transformation(results, root));
+                base.DataContext = _lookUpTree;
+            }
+            else
+            {
+                _lookUpTree.Rebuild(new Transformation(results, root));
+            }
+            _lookUpTree?.SearchCommand.Execute(null);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -41,6 +52,16 @@ namespace LookAt
             {
                 // TODO: add warning here
             }
+        }
+
+        private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs textChangedEventArgs)
+        {
+            _lookUpTree?.SearchCommand.Execute(null);
+        }
+
+        private void _propertyGrid_OnSelectedObjectChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            _propertyGrid.ExpandAllProperties();
         }
     }
 }

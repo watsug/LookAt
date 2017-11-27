@@ -88,10 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="PropertyGrid\LookupResult.cs" />
-    <Compile Include="PropertyGrid\TransformationNode.cs" />
-    <Compile Include="PropertyGrid\TransformationNodeCollection.cs" />
-    <Compile Include="PropertyGrid\TransformationNodeCollectionPropertyDescriptor.cs" />
+    <Compile Include="Model\Transformation.cs" />
+    <Compile Include="Model\TransformationCollection.cs" />
+    <Compile Include="ViewModel\LookupResultViewModel.cs" />
+    <Compile Include="ViewModel\TransformationViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

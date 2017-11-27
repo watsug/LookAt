@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:LookAt"
         mc:Ignorable="d"
-        Title="LookAt!" Height="480" Width="640" Loaded="Window_Loaded">
+        Title="LookAt!" Height="600" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -25,7 +25,7 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" SelectionChanged="RichTextBox_SelectionChanged">
                 <FlowDocument>
@@ -37,7 +37,59 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <xctk:PropertyGrid x:Name="_propertyGrid" AutoGenerateProperties="True" Grid.Column="1" />
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <StackPanel 
+                    HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Stretch" 
+                    Orientation="Horizontal"
+                >
+                    <TextBlock Text="Search for:" />
+                    <TextBox 
+                        x:Name="searchTextBox"
+                        TextChanged="TextBoxBase_OnTextChanged" 
+                        Margin="6,0"
+                        Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                        Width="200"
+                    />
+                    <Button 
+                        Command="{Binding SearchCommand}" 
+                        Content="_Find" 
+                        Padding="8,0" 
+                    />
+                </StackPanel>
+                <TreeView x:Name="_treeView" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" ItemsSource="{Binding FirstGeneration}">
+                    <TreeView.ItemContainerStyle>
+                        <!-- This Style binds a TreeViewItem to a TransformationViewModel. -->
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                            <Setter Property="FontWeight" Value="Normal" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TreeView.ItemContainerStyle>
+
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                            <TextBlock Text="{Binding Name}" />
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+                <xctk:PropertyGrid x:Name="_propertyGrid" AutoGenerateProperties="False" ShowSearchBox="False" ShowTitle="False" Grid.Row="2"
+                                   SelectedObject="{Binding ElementName=_treeView, Path=SelectedItem}" SelectedObjectChanged="_propertyGrid_OnSelectedObjectChanged">
+                    <xctk:PropertyGrid.PropertyDefinitions>
+                        <xctk:PropertyDefinition Name="Name" />
+                        <xctk:PropertyDefinition Name="Value" />
+                    </xctk:PropertyGrid.PropertyDefinitions>
+                </xctk:PropertyGrid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

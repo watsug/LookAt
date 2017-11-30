@@ -25,6 +25,7 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <RichTextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" SelectionChanged="RichTextBox_SelectionChanged">
@@ -37,7 +38,8 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <Grid Grid.Column="1">
+            <GridSplitter Grid.Column="1" Width="3" Background="LightGray" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="1*"/>
@@ -82,7 +84,7 @@
                         </HierarchicalDataTemplate>
                     </TreeView.ItemTemplate>
                 </TreeView>
-                <xctk:PropertyGrid x:Name="_propertyGrid" AutoGenerateProperties="False" ShowSearchBox="False" ShowTitle="False" Grid.Row="2"
+                <xctk:PropertyGrid x:Name="_propertyGrid" AutoGenerateProperties="False" ShowSearchBox="False" ShowSortOptions="False" ShowTitle="True" Grid.Row="2"
                                    SelectedObject="{Binding ElementName=_treeView, Path=SelectedItem}" SelectedObjectChanged="_propertyGrid_OnSelectedObjectChanged">
                     <xctk:PropertyGrid.PropertyDefinitions>
                         <xctk:PropertyDefinition Name="Name" />

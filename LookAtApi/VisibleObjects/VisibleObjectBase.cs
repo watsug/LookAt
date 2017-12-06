@@ -7,26 +7,24 @@ namespace LookAtApi.VisibleObjects
     [TypeConverter(typeof(VisibleObjectConverter))]
     public abstract class VisibleObjectBase : IVisibleObject
     {
-        #region private
-        IVisibleObject _parent = null;
-        ITransformation _transformation = null;
-        #endregion
-
-        public VisibleObjectBase(IVisibleObject parent = null, ITransformation transformation = null)
+        protected VisibleObjectBase(IVisibleObject parent = null, ITransformation transformation = null, bool final = false)
         {
-            _parent = parent;
-            _transformation = transformation;
+            Parent = parent;
+            Transformation = transformation;
+            Final = final;
         }
 
         #region IVisibleObject
         [Category("Information")]
-        public IVisibleObject Parent => _parent;
+        public IVisibleObject Parent { get; } = null;
 
         [Category("Information")]
-        public ITransformation Transformation => _transformation;
+        public ITransformation Transformation { get; } = null;
 
         [Category("Value")]
         public abstract object Value { get; }
+
+        public bool Final { get; } = false;
         #endregion
     }
 }

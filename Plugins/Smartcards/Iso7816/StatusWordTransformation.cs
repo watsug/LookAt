@@ -68,9 +68,9 @@ namespace Smartcards.Iso7816
 
         public IVisibleObject DoTransformation(IVisibleObject obj)
         {
-            if (obj.Value is ushort)
+            if (obj.Value is ushort @ushort)
             {
-                return new VisibleObject(new StatusWord((ushort)obj.Value, _map[(ushort)obj.Value]), obj, this);
+                return new VisibleObject(new StatusWord(@ushort, _map[@ushort]), obj, this, true);
             }
             return null;
         }

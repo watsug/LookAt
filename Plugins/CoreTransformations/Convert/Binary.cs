@@ -16,20 +16,19 @@ namespace CoreTransformations.Convert
             try
             {
                 byte[] buff;
-                if (obj.Value is System.UInt16 tmp1)
+                switch (obj.Value)
                 {
-                    buff = new byte[]{ (byte)((tmp1 >> 8) & 0x00ff), (byte)(tmp1 & 0x00ff) };
-                }
-                else if (obj.Value is uint tmp2)
-                {
-                    buff = new byte[] { (byte)((tmp2 >> 24) & 0x00ff), (byte)((tmp2 >> 16) & 0x00ff), (byte)((tmp2 >> 8) & 0x00ff), (byte)(tmp2 & 0x00ff) };
-                }
-                else
-                {
-                    return null;
+                    case ushort tmp1:
+                        buff = new byte[]{ (byte)((tmp1 >> 8) & 0x00ff), (byte)(tmp1 & 0x00ff) };
+                        break;
+                    case uint tmp2:
+                        buff = new byte[] { (byte)((tmp2 >> 24) & 0x00ff), (byte)((tmp2 >> 16) & 0x00ff), (byte)((tmp2 >> 8) & 0x00ff), (byte)(tmp2 & 0x00ff) };
+                        break;
+                    default:
+                        return null;
                 }
 
-                return new StringVisibleObject(RenderBinaryString(buff), obj, this);
+                return new StringVisibleObject(RenderBinaryString(buff), obj, this, true);
             }
             catch (Exception)
             {

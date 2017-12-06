@@ -9,11 +9,11 @@ namespace LookAtApi.VisibleObjects
     public class VisibleObject : VisibleObjectBase
     {
         #region private
-        object _val = 0;
+        protected readonly object _val = 0;
         #endregion
 
-        public VisibleObject(object val, IVisibleObject parent = null, ITransformation transformation = null)
-            : base(parent, transformation)
+        public VisibleObject(object val, IVisibleObject parent = null, ITransformation transformation = null, bool final = false)
+            : base(parent, transformation, final)
         {
             _val = val;
         }

@@ -11,8 +11,8 @@ namespace LookAtApi.VisibleObjects
         byte[] _val = null;
         #endregion
 
-        public ByteArrayVisibleObject(byte[] arr, IVisibleObject parent = null, ITransformation transformation = null)
-            : base (parent, transformation)
+        public ByteArrayVisibleObject(byte[] arr, IVisibleObject parent = null, ITransformation transformation = null, bool final = false)
+            : base (parent, transformation, final)
         {
             _val = arr;
         }

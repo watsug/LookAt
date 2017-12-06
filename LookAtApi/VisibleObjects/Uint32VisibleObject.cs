@@ -9,11 +9,11 @@ namespace LookAtApi.VisibleObjects
     public class Uint32VisibleObject : VisibleObjectBase
     {
         #region private
-        UInt32 _val = 0;
+        private readonly uint _val = 0;
         #endregion
 
-        public Uint32VisibleObject(UInt32 val, IVisibleObject parent = null, ITransformation transformation = null)
-            : base(parent, transformation)
+        public Uint32VisibleObject(UInt32 val, IVisibleObject parent = null, ITransformation transformation = null, bool final = false)
+            : base(parent, transformation, final)
         {
             _val = val;
         }

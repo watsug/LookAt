@@ -11,8 +11,8 @@ namespace LookAtApi.VisibleObjects
         string _val = "";
         #endregion
 
-        public StringVisibleObject(string str, IVisibleObject parent = null, ITransformation transformation = null)
-            : base (parent, transformation)
+        public StringVisibleObject(string str, IVisibleObject parent = null, ITransformation transformation = null, bool final = false)
+            : base (parent, transformation, final)
         {
             _val = str;
         }

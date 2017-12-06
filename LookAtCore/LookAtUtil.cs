@@ -73,13 +73,14 @@ namespace LookAtCore
             }
             if (generations - 1 > 0)
             {
-                List<IVisibleObject> gen_1 = new List<IVisibleObject>();
+                List<IVisibleObject> gen1 = new List<IVisibleObject>();
                 foreach (var res in results)
                 {
+                    if (res.Final) continue;
                     IEnumerable<IVisibleObject> tmp = DoSearch(plugins, res, generations - 1);
-                    gen_1.AddRange(tmp);
+                    gen1.AddRange(tmp);
                 }
-                results.AddRange(gen_1);
+                results.AddRange(gen1);
             }
             return results;
         }
